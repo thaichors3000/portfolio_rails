@@ -17,9 +17,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: db
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
@@ -81,5 +85,3 @@ test:
 production:
   <<: *default
   database: portfolio_rails_production
-  username: portfolio_rails
-  password: <%= ENV['PORTFOLIO_RAILS_DATABASE_PASSWORD'] %>
